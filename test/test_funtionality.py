@@ -23,8 +23,7 @@ class TestGraphFunctionality(TestCase):
         """
 
         # initialise graph with the root node
-        graph = Graph()
-        graph.add_node('', 'A')
+        graph = Graph('A')
         graph.add_node('A', 'B')
 
         # adding node with parent that does not exist in the graph
@@ -53,16 +52,6 @@ class TestGraphFunctionality(TestCase):
                              'M': {'N': {}, 'O': {}}
                          })
 
-        # test graph can be created with initial node
-        graph2 = Graph('A')
-        graph2.add_node('A', 'B')
-        graph2.add_node('A', 'C')
-
-        self.assertEqual(graph2.to_dict(), {'A': {'B': {}, 'C': {}}})
-
-        # test adding node whose parent does not exist
-        graph2.add_node('D', 'A')
-        self.assertRaises(MissingParentNodeException, graph2.add_node, 'D', 'A')
 
     def test_creation_of_graph_with_edge_description(self):
 
